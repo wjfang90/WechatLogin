@@ -1,0 +1,38 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<html>
+<head>
+</head>
+
+<body>
+    <!--第一步：获取登录二维码-->
+
+    <h3>1.js获取二维码方式</h3>
+    <div id="qrcode">
+
+    </div>
+
+    <h3>2.连接获取二维码方式</h3>
+    <a href="http://open.weixin.qq.com/connect/qrconnect?appid=wxf1d54e32f71484b5&redirect_uri=http://192.168.4.179:8058/api/login&response_type=code&scope=snsapi_login&state=fang#wechat_redirect">获取二维码</a>
+</body>
+</html>
+    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script>
+
+        let appidd = "wxf1d54e32f71484b5";
+        let redirectUrll = encodeURI("http://192.168.4.179:8058/api/login");
+        const scopeValuee = "snsapi_login"; //网站登录只能设置snsapi_login
+
+        var obj = new WxLogin({
+            self_redirect: false, //true：手机点击确认登录后可以在 iframe 内跳转到 redirect_uri，false：手机点击确认登录后可以在 top window 跳转到 redirect_uri。默认为 false
+            id: "qrcode", //第三方页面显示二维码的容器id
+            appid: appidd,
+            scope: scopeValuee, //应用授权作用域，拥有多个作用域用逗号（,）分隔，网页应用目前仅填写snsapi_login即可
+            redirect_uri: redirectUrll, //重定向地址，需要进行UrlEncode
+            state: "fang", //用于保持请求和回调的状态
+            style: "black", //提供"black"、"white"可选
+            href: "https://manage.pkulaw.cn/Content/wechatimg.css", //自定义样式链接
+        });
+    </script>
+
